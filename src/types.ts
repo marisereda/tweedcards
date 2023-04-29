@@ -7,23 +7,10 @@ export type User = {
   isFollowed?: boolean;
 };
 
-export type Action =
-  | {
-      type: 'error' | 'setIsLoading';
-    }
-  | {
-      type: 'getUsersPage';
-      payload: User[];
-    }
-  | {
-      type: 'updateUser';
-      payload: User;
-    };
-
-export type State = {
+export interface UserState {
   users: User[];
   page: number;
-  error: string;
-  isLoading: boolean;
   hasNextPage: boolean;
-};
+  isLoading: boolean;
+  error: string;
+}
