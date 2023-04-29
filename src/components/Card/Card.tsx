@@ -13,11 +13,11 @@ import { Avatar } from '../Avatar';
 
 interface CardProps {
   user: User;
+  onFollow: () => void;
 }
 
-export const Card = ({
-  user: { user, avatar, followers, tweets },
-}: CardProps) => {
+export const Card = ({ user, onFollow }: CardProps) => {
+  const { avatar, followers, tweets, isFollowed } = user;
   return (
     <Wrap>
       <Logo src={logo} />
@@ -27,7 +27,9 @@ export const Card = ({
       <ContentWrap>
         <Tweets>{tweets} tweets</Tweets>
         <Followers>{followers} followers</Followers>
-        <Button isFollowed={false}>Follow</Button>
+        <Button isFollowed={isFollowed} onClick={onFollow}>
+          {isFollowed ? 'Following ' : 'Follow'}
+        </Button>
       </ContentWrap>
     </Wrap>
   );

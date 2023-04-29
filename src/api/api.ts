@@ -10,3 +10,8 @@ export const getUsers = async ({ page = 1, limit = 4 }) => {
   );
   return data;
 };
+
+export const patchUser = async (user: User) => {
+  const { data } = await axios.put<User>(`/users/${user.id}`, user);
+  return data;
+};
