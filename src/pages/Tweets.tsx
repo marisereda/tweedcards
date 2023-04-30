@@ -3,8 +3,6 @@ import toast from 'react-hot-toast';
 import { Button } from '~/components/Button';
 import { Card } from '~/components/Card';
 import { Container } from '~/components/Container';
-import { Dropdown } from '~/components/Dropdown';
-
 import { Loader } from '~/components/Loader';
 import { Message } from '~/components/Message';
 import { errorMessage } from '~/contants';
@@ -18,7 +16,9 @@ import {
   useAppSelector,
 } from '~/redux/usersSlice';
 import { User } from '~/types';
-import { Grid, Header, Main, Menu } from './Tweex.styled';
+import { ButtonWrap, Grid, Main, Wrap } from './Tweex.styled';
+import { Header } from '~/components/Header';
+import { Footer } from '~/components/Footer';
 
 export const Tweets = () => {
   const users = useAppSelector(selectUsers);
@@ -61,14 +61,8 @@ export const Tweets = () => {
   };
 
   return (
-    <>
-      <Header>
-        <Container>
-          <Menu>
-            <Dropdown />
-          </Menu>
-        </Container>
-      </Header>
+    <Wrap>
+      <Header />
       <Main>
         <Container>
           <Grid>
@@ -83,12 +77,15 @@ export const Tweets = () => {
           </Grid>
 
           {users.length > 0 && hasNextPage && (
-            <Button disabled={isFetching} isFollowed onClick={handleNextPage}>
-              {isFetching ? <Loader /> : <span>Load More</span>}
-            </Button>
+            <ButtonWrap>
+              <Button disabled={isFetching} isAccent onClick={handleNextPage}>
+                {isFetching ? <Loader /> : <span>Load More</span>}
+              </Button>
+            </ButtonWrap>
           )}
         </Container>
       </Main>
-    </>
+      <Footer />
+    </Wrap>
   );
 };

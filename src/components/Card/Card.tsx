@@ -23,18 +23,14 @@ export const Card = ({ user, isUpdating, onFollow }: CardProps) => {
   const buttonText = isFollowed ? 'Following ' : 'Follow';
   return (
     <Wrap>
-      <Logo src={logo} />
+      <Logo src={logo} width={76} alt="GO IT" />
       <AvatarWrap>
         <Avatar src={avatar} />
       </AvatarWrap>
       <ContentWrap>
         <Tweets>{tweets} tweets</Tweets>
         <Followers>{followers} followers</Followers>
-        <Button
-          disabled={isUpdating}
-          isFollowed={isFollowed}
-          onClick={onFollow}
-        >
+        <Button disabled={isUpdating} isAccent={isFollowed} onClick={onFollow}>
           {isUpdating ? <Loader /> : <span>{buttonText}</span>}
         </Button>
       </ContentWrap>

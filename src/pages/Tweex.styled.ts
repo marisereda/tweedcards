@@ -1,18 +1,33 @@
 import styled from 'styled-components';
 
+export const Wrap = styled.header`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`;
+
 export const Header = styled.header`
   padding: 24px 0;
-  background-color: #591c87;
+  background-color: #47317e;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
 export const Menu = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const Main = styled.main`
+  flex-grow: 1;
   padding: 46px 0;
+  /* text-align: center; */
+`;
+
+export const ButtonWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
 `;
 
 export const Grid = styled.ul`

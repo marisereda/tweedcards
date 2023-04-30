@@ -5,6 +5,15 @@ import { fetchNextPage } from '~/redux/operations';
 import { setFilter, useAppDispatch } from '~/redux/usersSlice';
 import { Message } from '../Message';
 
+import * as Select from '@radix-ui/react-select';
+import { SelectContent, SelectItem, SelectTrigger } from './Dropdown.styled';
+import {
+  CheckIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  DrawingPinFilledIcon,
+} from '@radix-ui/react-icons';
+
 export const Dropdown = () => {
   const options = [
     { label: 'All', value: 'All' },
@@ -25,15 +34,28 @@ export const Dropdown = () => {
   };
 
   return (
-    <div>
-      <select
-        value={selectedValue}
-        onChange={(event) => handleSelect(event.target.value)}
-      >
-        {options.map((option) => (
-          <option value={option.value}>{option.label}</option>
-        ))}
-      </select>
-    </div>
+    <Select.Root
+      value={selectedValue}
+      onValueChange={(value) => handleSelect(value)}
+    >
+      <SelectTrigger>
+        <Select.Value aria-label={selectedValue}>{selectedValue}</Select.Value>
+        <Select.Icon>
+          <ChevronDownIcon />
+        </Select.Icon>
+      </SelectTrigger>
+      <SelectContent position="popper" sideOffset={10}>
+        <Select.Viewport>
+          {options.map((option) => (
+            <SelectItem key={option.value} value={option.value}>
+              <Select.ItemText> {option.label}</Select.ItemText>
+              <Select.ItemIndicator>
+                <DrawingPinFilledIcon />
+              </Select.ItemIndicator>
+            </SelectItem>
+          ))}
+        </Select.Viewport>
+      </SelectContent>
+    </Select.Root>
   );
 };
