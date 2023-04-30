@@ -7,9 +7,13 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     padding: 0;
-    background-color: #EBD8FF;
+    background-color: #f3e8ff;
     font-family: Montserrat, sans-serif;
 
+  }
+
+  button {
+    border: none;
   }
 
   ul{

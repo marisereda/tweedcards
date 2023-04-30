@@ -11,6 +11,7 @@ export interface UserState {
   users: User[];
   page: number;
   hasNextPage: boolean;
-  isLoading: boolean;
-  error: string;
+  isFetching: boolean;
+  whoIsUpdating: User['id'][];
+  filterByFollow: string;
 }

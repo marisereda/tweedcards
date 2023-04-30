@@ -1,4 +1,4 @@
-import { StyledMessage, Text } from '.';
+import { StyledMessage, Text } from './Message.styled';
 
 interface MessageProps {
   message: string;

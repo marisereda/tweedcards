@@ -1,4 +1,8 @@
+import logo from '~/assets/logo.svg';
 import { User } from '~/types';
+import { Avatar } from '../Avatar';
+import { Button } from '../Button';
+import { Loader } from '../Loader';
 import {
   AvatarWrap,
   ContentWrap,
@@ -7,17 +11,16 @@ import {
   Tweets,
   Wrap,
 } from './Card.styled';
-import logo from '~/assets/logo.svg';
-import { Button } from '../Button';
-import { Avatar } from '../Avatar';
 
 interface CardProps {
   user: User;
+  isUpdating: boolean;
   onFollow: () => void;
 }
 
-export const Card = ({ user, onFollow }: CardProps) => {
+export const Card = ({ user, isUpdating, onFollow }: CardProps) => {
   const { avatar, followers, tweets, isFollowed } = user;
+  const buttonText = isFollowed ? 'Following ' : 'Follow';
   return (
     <Wrap>
       <Logo src={logo} />
@@ -27,8 +30,12 @@ export const Card = ({ user, onFollow }: CardProps) => {
       <ContentWrap>
         <Tweets>{tweets} tweets</Tweets>
         <Followers>{followers} followers</Followers>
-        <Button isFollowed={isFollowed} onClick={onFollow}>
-          {isFollowed ? 'Following ' : 'Follow'}
+        <Button
+          disabled={isUpdating}
+          isFollowed={isFollowed}
+          onClick={onFollow}
+        >
+          {isUpdating ? <Loader /> : <span>{buttonText}</span>}
         </Button>
       </ContentWrap>
     </Wrap>

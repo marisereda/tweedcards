@@ -3,24 +3,28 @@ import toast from 'react-hot-toast';
 import { Button } from '~/components/Button';
 import { Card } from '~/components/Card';
 import { Container } from '~/components/Container';
-import { Grid } from '~/components/Grid/Grid.styled';
+import { Dropdown } from '~/components/Dropdown';
+
 import { Loader } from '~/components/Loader';
 import { Message } from '~/components/Message';
+import { errorMessage } from '~/contants';
 import { fetchNextPage, updateUser } from '~/redux/operations';
 import {
-  selectError,
   selectHasNextPage,
-  selectIsLoading,
   selectUsers,
+  selectWhoIsUpdating,
+  selectisFetching,
   useAppDispatch,
   useAppSelector,
 } from '~/redux/usersSlice';
+import { User } from '~/types';
+import { Grid, Header, Main, Menu } from './Tweex.styled';
 
 export const Tweets = () => {
   const users = useAppSelector(selectUsers);
-  const isLoading = useAppSelector(selectIsLoading);
+  const isFetching = useAppSelector(selectisFetching);
   const hasNextPage = useAppSelector(selectHasNextPage);
-  const error = useAppSelector(selectError);
+  const whoIsUpdating = useAppSelector(selectWhoIsUpdating);
   const dispatch = useAppDispatch();
   const isFirstRender = useRef(true);
 
@@ -29,29 +33,62 @@ export const Tweets = () => {
       isFirstRender.current = false;
       return;
     }
-    dispatch(fetchNextPage());
+
+    dispatch(fetchNextPage())
+      .unwrap()
+      .catch(() => toast.custom(<Message message={errorMessage} />));
   }, [dispatch]);
 
-  if (error) {
-    toast.custom(<Message message={error} />);
-  }
-  return (
-    <Container>
-      <Grid>
-        {users.map((user) => (
-          <Card
-            key={user.id}
-            user={user}
-            onFollow={() => dispatch(updateUser(user))}
-          />
-        ))}
-      </Grid>
+  const handleFollow = async (user: User) => {
+    const updatedUser = {
+      ...user,
+      followers: user.followers + (user.isFollowed ? -1 : 1),
+      isFollowed: !user.isFollowed,
+    };
+    try {
+      await dispatch(updateUser(updatedUser)).unwrap();
+    } catch (error) {
+      toast.custom(<Message message={errorMessage} />);
+    }
+  };
 
-      {users.length > 0 && hasNextPage && (
-        <Button onClick={() => dispatch(fetchNextPage())}>
-          {isLoading ? <Loader /> : <span>Load More</span>}
-        </Button>
-      )}
-    </Container>
+  const handleNextPage = async () => {
+    try {
+      await dispatch(fetchNextPage()).unwrap();
+    } catch (error) {
+      toast.custom(<Message message={errorMessage} />);
+    }
+  };
+
+  return (
+    <>
+      <Header>
+        <Container>
+          <Menu>
+            <Dropdown />
+          </Menu>
+        </Container>
+      </Header>
+      <Main>
+        <Container>
+          <Grid>
+            {users.map((user) => (
+              <Card
+                key={user.id}
+                user={user}
+                isUpdating={whoIsUpdating.includes(user.id)}
+                onFollow={() => handleFollow(user)}
+              />
+            ))}
+          </Grid>
+
+          {users.length > 0 && hasNextPage && (
+            <Button disabled={isFetching} isFollowed onClick={handleNextPage}>
+              {isFetching ? <Loader /> : <span>Load More</span>}
+            </Button>
+          )}
+        </Container>
+      </Main>
+    </>
   );
 };
