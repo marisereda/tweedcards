@@ -5,9 +5,9 @@ export const Wrap = styled.div`
   position: relative;
   width: 80px;
   height: 80px;
-  border-radius: 9999px;
+  border-radius: ${(p) => p.theme.radii.full};
   overflow: hidden;
-  background-color: #5736a3;
+  background-color: ${(p) => p.theme.colors.primary['800']};
 
   :after {
     position: absolute;

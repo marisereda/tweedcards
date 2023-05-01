@@ -8,11 +8,11 @@ export const SelectTrigger = styled(Select.Trigger)`
   min-width: 196px;
   padding: 14px;
   font-weight: 600;
-  font-size: 18px;
+  font-size: ${(p) => p.theme.fontSizes.md};
   line-height: 1;
   text-transform: uppercase;
-  background-color: #ebd8ff;
-  border-radius: 10px;
+  background-color: ${(p) => p.theme.colors.secondary['200']};
+  border-radius: ${(p) => p.theme.radii.sm};
   cursor: pointer;
   outline: none;
 
@@ -28,12 +28,12 @@ export const SelectTrigger = styled(Select.Trigger)`
 export const SelectContent = styled(Select.Content)`
   min-width: 196px;
   font-weight: 600;
-  font-size: 18px;
+  font-size: ${(p) => p.theme.fontSizes.md};
   line-height: 1;
   text-transform: uppercase;
-  background-color: #ebd8ff;
-  border-radius: 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: ${(p) => p.theme.colors.secondary['200']};
+  border-radius: ${(p) => p.theme.radii.sm};
+  box-shadow: ${(p) => p.theme.shadows.sm};
   overflow: hidden;
   cursor: pointer;
 
@@ -49,15 +49,15 @@ export const SelectItem = styled(Select.Item)`
   justify-content: space-between;
   padding: 16px;
   font-weight: 600;
-  font-size: 18px;
+  font-size: ${(p) => p.theme.fontSizes.md};
   line-height: 1;
   text-transform: uppercase;
-  background-color: #ebd8ff;
+  background-color: ${(p) => p.theme.colors.secondary['200']};
   outline: none;
   cursor: pointer;
 
   &[data-highlighted] {
-    background-color: #d9b4fe;
+    background-color: ${(p) => p.theme.colors.secondary['300']};
   }
 
   svg {

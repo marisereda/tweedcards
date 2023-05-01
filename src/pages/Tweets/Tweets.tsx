@@ -1,8 +1,11 @@
 import { useEffect, useRef } from 'react';
 import toast from 'react-hot-toast';
+import { Box } from '~/components/Box';
 import { Button } from '~/components/Button';
 import { Card } from '~/components/Card';
 import { Container } from '~/components/Container';
+import { Footer } from '~/components/Footer';
+import { Header } from '~/components/Header';
 import { Loader } from '~/components/Loader';
 import { Message } from '~/components/Message';
 import { errorMessage } from '~/contants';
@@ -16,9 +19,7 @@ import {
   useAppSelector,
 } from '~/redux/usersSlice';
 import { User } from '~/types';
-import { ButtonWrap, Grid, Main, Wrap } from './Tweex.styled';
-import { Header } from '~/components/Header';
-import { Footer } from '~/components/Footer';
+import { Grid } from './Tweex.styled';
 
 export const Tweets = () => {
   const users = useAppSelector(selectUsers);
@@ -60,9 +61,9 @@ export const Tweets = () => {
   };
 
   return (
-    <Wrap>
+    <Box display="flex" flexDirection="column" minHeight="100vh">
       <Header />
-      <Main>
+      <Box as="main" flexGrow={1} py={46}>
         <Container>
           <Grid>
             {users.map((user) => (
@@ -76,15 +77,15 @@ export const Tweets = () => {
           </Grid>
 
           {users.length > 0 && hasNextPage && (
-            <ButtonWrap>
+            <Box display="flex" justifyContent="center">
               <Button disabled={isFetching} isAccent onClick={handleNextPage}>
                 {isFetching ? <Loader /> : <span>Load More</span>}
               </Button>
-            </ButtonWrap>
+            </Box>
           )}
         </Container>
-      </Main>
+      </Box>
       <Footer />
-    </Wrap>
+    </Box>
   );
 };

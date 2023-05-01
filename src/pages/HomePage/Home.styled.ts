@@ -1,12 +1,7 @@
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import girl from '~/assets/home_page_2x.jpg';
+import styled from 'styled-components';
 import bgImage from '~/assets/bg-image.png';
-
-export const Main = styled.div`
-  display: flex;
-  min-height: 100vh;
-`;
+import girl from '~/assets/home_page_2x.jpg';
 
 export const Left = styled.div`
   display: flex;
@@ -15,8 +10,7 @@ export const Left = styled.div`
   justify-content: center;
   padding: 16px;
   width: 100vw;
-  /* background-color: #f3e8ff; */
-  background-color: #e9d5ff;
+  background-color: ${(p) => p.theme.colors.secondary['200']};
 
   @media (min-width: 640px) {
     width: 50vw;
@@ -39,39 +33,36 @@ export const Right = styled.div`
 
 export const SyledLink = styled(Link)`
   min-width: 196px;
-  padding: 16px;
+  padding: 18px 28px;
   font-weight: 600;
-  font-size: 24px;
+  font-size: ${(p) => p.theme.fontSizes.x};
   line-height: 1;
   text-transform: uppercase;
   text-align: center;
-  color: #ebd8ff;
-  background-color: #5736a3;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: ${(p) => p.theme.colors.secondary['200']};
+  background-color: ${(p) => p.theme.colors.primary['800']};
+  box-shadow: ${(p) => p.theme.shadows.sm};
   border-radius: 10px;
   transition: background-color 250ms;
 
   :hover {
-    background-color: #683ec4;
+    background-color: ${(p) => p.theme.colors.primary['700']};
   }
 
   :active {
-    background-color: #5736a3;
+    background-color: ${(p) => p.theme.colors.primary['800']};
   }
 
   @media (min-width: 640px) {
-    font-size: 28px;
-  }
-  @media (min-width: 1200px) {
-    font-size: 32px;
+    font-size: ${(p) => p.theme.fontSizes['2xl']};
   }
 `;
 
 export const Text = styled.p`
   margin-bottom: 80px;
   font-weight: 600;
-  font-size: 32px;
+  font-size: ${(p) => p.theme.fontSizes['3xl']};
   line-height: 1;
-  color: #47317e;
+  color: ${(p) => p.theme.colors.primary['900']};
   text-align: center;
 `;

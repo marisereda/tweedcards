@@ -1,12 +1,12 @@
+import { BsChevronDown, BsPinAngle } from 'react-icons/bs';
+import * as Select from '@radix-ui/react-select';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { errorMessage } from '~/contants';
 import { fetchNextPage } from '~/redux/operations';
 import { setFilter, useAppDispatch } from '~/redux/usersSlice';
 import { Message } from '../Message';
-import * as Select from '@radix-ui/react-select';
 import { SelectContent, SelectItem, SelectTrigger } from './Dropdown.styled';
-import { ChevronDownIcon, DrawingPinFilledIcon } from '@radix-ui/react-icons';
 
 export const Dropdown = () => {
   const options = [
@@ -35,7 +35,7 @@ export const Dropdown = () => {
       <SelectTrigger>
         <Select.Value aria-label={selectedValue}>{selectedValue}</Select.Value>
         <Select.Icon>
-          <ChevronDownIcon width={24} height={24} />
+          <BsChevronDown size={18} />
         </Select.Icon>
       </SelectTrigger>
       <SelectContent position="popper" sideOffset={10}>
@@ -44,7 +44,7 @@ export const Dropdown = () => {
             <SelectItem key={option.value} value={option.value}>
               <Select.ItemText> {option.label}</Select.ItemText>
               <Select.ItemIndicator>
-                <DrawingPinFilledIcon />
+                <BsPinAngle size={18} />
               </Select.ItemIndicator>
             </SelectItem>
           ))}

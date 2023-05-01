@@ -28,7 +28,7 @@ export const Loader = styled.div`
     right: 0;
     border: 3px solid currentColor;
     border-bottom-color: transparent;
-    border-radius: 9999px;
+    border-radius: ${(p) => p.theme.radii.full};
     animation: ${rotate} 1s ease infinite;
   }
 `;

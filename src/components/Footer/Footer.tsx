@@ -1,41 +1,51 @@
-import { Container } from '../Container';
-import { Item, Link, List, SyledFooter, Wrap } from './Footer.styled';
-import { BsGithub } from 'react-icons/bs';
+import { BsFillEnvelopeAtFill, BsGithub, BsLinkedin } from 'react-icons/bs';
 import { FaTelegramPlane } from 'react-icons/fa';
-import { AiOutlineMail, AiFillLinkedin } from 'react-icons/ai';
+import { Box } from '../Box';
+import { Container } from '../Container';
+import { Link } from './Footer.styled';
+import { theme } from '~/theme';
+
+const links = [
+  {
+    href: 'mailto:marina.gorb@gmail.com',
+    icon: BsFillEnvelopeAtFill,
+  },
+  {
+    href: 'https://t.me/MarynaSereda',
+    icon: FaTelegramPlane,
+  },
+  {
+    href: 'https://www.linkedin.com/in/maryna-sereda',
+    icon: BsLinkedin,
+  },
+  {
+    href: 'https://github.com/marisereda',
+    icon: BsGithub,
+  },
+];
 
 export const Footer = () => {
   return (
-    <SyledFooter>
+    <Box as="footer" py={8} background={theme.colors.primary['950']}>
       <Container>
-        <Wrap>
-          <List>
-            <Item>
-              <Link href="mailto:marina.gorb@gmail.com">
-                <AiOutlineMail size={32} />
-              </Link>
-            </Item>
-            <Item>
-              <Link href="https://t.me/MarynaSereda" target="_blank">
-                <FaTelegramPlane size={32} />
-              </Link>
-            </Item>
-            <Item>
-              <Link
-                href="https://www.linkedin.com/in/maryna-sereda/"
-                target="_blank"
-              >
-                <AiFillLinkedin size={32} />
-              </Link>
-            </Item>
-            <Item>
-              <Link href="https://github.com/marisereda" target="_blank">
-                <BsGithub size={32} />
-              </Link>
-            </Item>
-          </List>
-        </Wrap>
+        <Box display="flex" justifyContent="center">
+          <Box
+            as="ul"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            gridGap={16}
+          >
+            {links.map(({ href, icon: Icon }) => (
+              <li key={href}>
+                <Link href={href} target="_blank">
+                  <Icon size={32} />
+                </Link>
+              </li>
+            ))}
+          </Box>
+        </Box>
       </Container>
-    </SyledFooter>
+    </Box>
   );
 };
