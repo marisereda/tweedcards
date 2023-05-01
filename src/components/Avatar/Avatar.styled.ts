@@ -16,7 +16,7 @@ export const Wrap = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    background: url(${bgAvatar}) no-repeat center;
     display: block;
+    background: url(${bgAvatar}) no-repeat center;
   }
 `;

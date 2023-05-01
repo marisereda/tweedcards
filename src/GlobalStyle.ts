@@ -1,22 +1,18 @@
 import { createGlobalStyle } from 'styled-components';
-import { normalize } from 'styled-normalize';
+import 'modern-normalize/modern-normalize.css';
 
 export const GlobalStyle = createGlobalStyle`
-  ${normalize}
-
-
-
   body {
-
-    padding: 0;
     min-height: 100vh;
-    background-color: #f3e8ff;
+    padding: 0;
     font-family: Montserrat, sans-serif;
-
+    background-color: #f3e8ff;
   }
 
   button {
     border: none;
+    cursor: pointer;
+
   }
 
   ul{
@@ -26,11 +22,10 @@ export const GlobalStyle = createGlobalStyle`
 
   a{
     text-decoration: none;
-
-    :active, :hover{
-      color: inherit
-    }
   }
 
-
+  svg {
+    display: block;
+    fill: currentColor;
+  }
 `;

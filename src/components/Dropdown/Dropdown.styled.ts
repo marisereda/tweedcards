@@ -5,8 +5,8 @@ export const SelectTrigger = styled(Select.Trigger)`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px;
   min-width: 196px;
+  padding: 14px;
   font-weight: 600;
   font-size: 18px;
   line-height: 1;
@@ -17,8 +17,6 @@ export const SelectTrigger = styled(Select.Trigger)`
   outline: none;
 
   svg {
-    width: 24px;
-    height: 24px;
     transition: transform 250ms;
   }
 
@@ -35,9 +33,9 @@ export const SelectContent = styled(Select.Content)`
   text-transform: uppercase;
   background-color: #ebd8ff;
   border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
   svg {
     width: 24px;

@@ -4,15 +4,9 @@ import { errorMessage } from '~/contants';
 import { fetchNextPage } from '~/redux/operations';
 import { setFilter, useAppDispatch } from '~/redux/usersSlice';
 import { Message } from '../Message';
-
 import * as Select from '@radix-ui/react-select';
 import { SelectContent, SelectItem, SelectTrigger } from './Dropdown.styled';
-import {
-  CheckIcon,
-  ChevronDownIcon,
-  ChevronUpIcon,
-  DrawingPinFilledIcon,
-} from '@radix-ui/react-icons';
+import { ChevronDownIcon, DrawingPinFilledIcon } from '@radix-ui/react-icons';
 
 export const Dropdown = () => {
   const options = [
@@ -41,7 +35,7 @@ export const Dropdown = () => {
       <SelectTrigger>
         <Select.Value aria-label={selectedValue}>{selectedValue}</Select.Value>
         <Select.Icon>
-          <ChevronDownIcon />
+          <ChevronDownIcon width={24} height={24} />
         </Select.Icon>
       </SelectTrigger>
       <SelectContent position="popper" sideOffset={10}>

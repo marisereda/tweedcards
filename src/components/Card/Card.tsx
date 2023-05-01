@@ -28,8 +28,8 @@ export const Card = ({ user, isUpdating, onFollow }: CardProps) => {
         <Avatar src={avatar} />
       </AvatarWrap>
       <ContentWrap>
-        <Tweets>{tweets} tweets</Tweets>
-        <Followers>{followers} followers</Followers>
+        <Tweets>{tweets.toLocaleString('en-US')} tweets</Tweets>
+        <Followers>{followers.toLocaleString('en-US')} followers</Followers>
         <Button disabled={isUpdating} isAccent={isFollowed} onClick={onFollow}>
           {isUpdating ? <Loader /> : <span>{buttonText}</span>}
         </Button>

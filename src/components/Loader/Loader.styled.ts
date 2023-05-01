@@ -26,7 +26,6 @@ export const Loader = styled.div`
     bottom: 0;
     left: 0;
     right: 0;
-
     border: 3px solid currentColor;
     border-bottom-color: transparent;
     border-radius: 9999px;

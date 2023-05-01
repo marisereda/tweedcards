@@ -3,10 +3,9 @@ import bgImage from '~/assets/bg-image.png';
 import bgLine from '~/assets/rectangle.png';
 
 export const Wrap = styled.li`
+  /* max-width: 380px; */
   padding-top: 20px;
   padding-bottom: 36px;
-
-  /* max-width: 380px; */
   box-shadow: -2px 6px 20px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   background-image: url(${bgImage}),
@@ -21,14 +20,13 @@ export const Logo = styled.img`
 `;
 
 export const AvatarWrap = styled.div`
+  display: flex;
+  justify-content: center;
   margin-bottom: 26px;
   /* background: url(${bgLine}) no-repeat center; */
   background-image: url(${bgLine}), url(${bgLine});
   background-position: left top 50%, right top 50%;
   background-repeat: no-repeat, no-repeat;
-
-  display: flex;
-  justify-content: center;
 `;
 
 export const ContentWrap = styled.div`
@@ -41,7 +39,6 @@ export const ContentWrap = styled.div`
   font-size: 20px;
   line-height: 24px;
   text-transform: uppercase;
-
   color: #ebd8ff;
 `;
 

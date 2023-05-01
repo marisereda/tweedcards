@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
 export const SyledFooter = styled.footer`
-  padding: 10px 0;
+  padding: 8px 0;
   background-color: #2b1d49;
 `;
 
 export const Wrap = styled.div`
   display: flex;
-
   justify-content: center;
 `;
 
@@ -32,9 +31,5 @@ export const Link = styled.a`
 
   :hover {
     color: rgba(255, 255, 255, 0.5);
-  }
-
-  svg {
-    fill: currentColor;
   }
 `;

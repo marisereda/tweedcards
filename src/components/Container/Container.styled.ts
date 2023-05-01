@@ -5,10 +5,10 @@ export const Container = styled.div`
   padding: 0 16px;
 
   @media (min-width: 640px) {
-    max-width: 838px;
+    max-width: 960px;
   }
 
-  @media (min-width: 1090px) {
+  @media (min-width: 1200px) {
     max-width: 1690px;
   }
 `;

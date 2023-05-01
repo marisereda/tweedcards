@@ -19,10 +19,6 @@ const router = createBrowserRouter([
     element: <Tweets />,
     errorElement: <HomePage />,
   },
-  // {
-  //   path: '/*',
-  //   element: <HomePage />,
-  // },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
@@ -30,8 +26,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <Provider store={store}>
       <RouterProvider router={router} />
       <GlobalStyle />
-      {/* <HomePage />
-      <Tweets /> */}
       <Toaster position="top-center" gutter={24} />
     </Provider>
   </React.StrictMode>

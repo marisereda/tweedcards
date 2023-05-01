@@ -1,6 +1,5 @@
 import { Container } from '../Container';
 import { Item, Link, List, SyledFooter, Wrap } from './Footer.styled';
-import logo from '~/assets/logo.svg';
 import { BsGithub } from 'react-icons/bs';
 import { FaTelegramPlane } from 'react-icons/fa';
 import { AiOutlineMail, AiFillLinkedin } from 'react-icons/ai';

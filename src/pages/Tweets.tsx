@@ -33,7 +33,6 @@ export const Tweets = () => {
       isFirstRender.current = false;
       return;
     }
-
     dispatch(fetchNextPage())
       .unwrap()
       .catch(() => toast.custom(<Message message={errorMessage} />));

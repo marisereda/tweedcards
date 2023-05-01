@@ -5,10 +5,8 @@ interface ButtonProps {
 }
 
 export const Button = styled.button<ButtonProps>`
-  /* display: block; */
-  /* margin: 0 auto; */
-  padding: 16px;
   min-width: 196px;
+  padding: 16px;
   font-weight: 600;
   font-size: 18px;
   line-height: 1;

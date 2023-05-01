@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const StyledMessage = styled.div`
-  padding: 0 16px;
   width: 320px;
+  padding: 0 16px;
   background-color: #897ddb;
   border-radius: 16px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,

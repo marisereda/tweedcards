@@ -1,9 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Left, Main, Right, SyledLink, Text } from './HomePage.styled';
 
 export const HomePage = () => {
   return (
-    <div>
-      <Link to="/tweetcards">Start</Link>
-    </div>
+    <Main>
+      <Left>
+        <Text>Find your like-minded people and enjoy tweeting...</Text>
+        <SyledLink to="/tweetcards">Get started</SyledLink>
+      </Left>
+      <Right></Right>
+    </Main>
   );
 };
