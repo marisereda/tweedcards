@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { pageLimit } from '~/contants';
 import { User, UserState } from '~/types';
-import { fetchNextPage, updateUser } from './operations';
+import { fetchNextPage, refetchAllPages, updateUser } from './operations';
 import { AppDispatch, RootState } from './store';
 
 const initialState: UserState = {
@@ -40,6 +40,21 @@ export const usersSlice = createSlice({
     });
 
     // ----------------------------------------------------------------
+    builder.addCase(refetchAllPages.pending, (state) => {
+      state.isFetching = true;
+    });
+
+    builder.addCase(refetchAllPages.fulfilled, (state, action) => {
+      state.users = [...action.payload];
+      state.hasNextPage = action.payload.length === pageLimit * state.page;
+      state.isFetching = false;
+    });
+
+    builder.addCase(refetchAllPages.rejected, (state) => {
+      state.isFetching = false;
+    });
+
+    // ----------------------------------------------------------------
     builder.addCase(updateUser.pending, (state, action) => {
       state.whoIsUpdating.push(action.meta.arg.id);
     });
@@ -66,6 +81,7 @@ export const selectHasNextPage = (state: RootState) => state.users.hasNextPage;
 export const selectisFetching = (state: RootState) => state.users.isFetching;
 export const selectWhoIsUpdating = (state: RootState) =>
   state.users.whoIsUpdating;
+export const selectFilter = (state: RootState) => state.users.filterByFollow;
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

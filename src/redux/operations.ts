@@ -27,6 +27,26 @@ export const fetchNextPage = createAsyncThunk<
 });
 
 // ----------------------------------------------------------------
+export const refetchAllPages = createAsyncThunk<
+  User[],
+  void,
+  { state: RootState }
+>('users/refetchAllPages', async (_, thunkAPI) => {
+  const page = thunkAPI.getState().users.page;
+  const filter = thunkAPI.getState().users.filterByFollow;
+  const searchParams = new URLSearchParams({
+    page: '1',
+    limit: String(page * pageLimit),
+  });
+  if (filter !== 'All') {
+    searchParams.append('isFollowed', filter === 'Follow' ? 'false' : 'true');
+  }
+  const url = '/users?' + searchParams.toString();
+  const { data } = await axios.get<User[]>(url);
+  return data;
+});
+
+// ----------------------------------------------------------------
 export const updateUser = createAsyncThunk<User, User>(
   'users/updateUser',
   async (user) => {

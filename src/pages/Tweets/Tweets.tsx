@@ -9,8 +9,9 @@ import { Header } from '~/components/Header';
 import { Loader } from '~/components/Loader';
 import { Message } from '~/components/Message';
 import { errorMessage } from '~/contants';
-import { fetchNextPage, updateUser } from '~/redux/operations';
+import { fetchNextPage, refetchAllPages, updateUser } from '~/redux/operations';
 import {
+  selectFilter,
   selectHasNextPage,
   selectUsers,
   selectWhoIsUpdating,
@@ -26,8 +27,10 @@ export const Tweets = () => {
   const isFetching = useAppSelector(selectisFetching);
   const hasNextPage = useAppSelector(selectHasNextPage);
   const whoIsUpdating = useAppSelector(selectWhoIsUpdating);
+  const filter = useAppSelector(selectFilter);
   const dispatch = useAppDispatch();
 
+  // ----------------------------------------------------------------
   useEffect(() => {
     const controller = new AbortController();
     dispatch(fetchNextPage(controller.signal));
@@ -35,6 +38,7 @@ export const Tweets = () => {
     return () => controller.abort();
   }, [dispatch]);
 
+  // ----------------------------------------------------------------
   const handleFollow = async (user: User) => {
     const updatedUser = {
       ...user,
@@ -43,11 +47,16 @@ export const Tweets = () => {
     };
     try {
       await dispatch(updateUser(updatedUser)).unwrap();
+      if (filter !== 'All') {
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        await dispatch(refetchAllPages()).unwrap();
+      }
     } catch (error) {
       toast.custom(<Message message={errorMessage} />);
     }
   };
 
+  // ----------------------------------------------------------------
   const handleNextPage = async () => {
     try {
       await dispatch(fetchNextPage()).unwrap();
@@ -56,6 +65,7 @@ export const Tweets = () => {
     }
   };
 
+  // ----------------------------------------------------------------
   return (
     <Box display="flex" flexDirection="column" minHeight="100vh">
       <Header />
