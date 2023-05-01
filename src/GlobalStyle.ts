@@ -9,6 +9,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: ${theme.fonts.primary};
     line-height: 1.2;
     background-color: ${theme.colors.secondary['100']};
+    overflow-y: scroll;
   }
 
   button {
