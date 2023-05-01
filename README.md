@@ -1,6 +1,6 @@
 # Tweets app
 
-![Tweets app](src\assets\tweets.png)
+![Tweets app](https://user-images.githubusercontent.com/105078220/235469498-e12ed0ce-70ae-409e-9e34-932c6557fb15.png)
 
 ## Features
 

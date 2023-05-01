@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { Box } from '~/components/Box';
 import { Button } from '~/components/Button';
@@ -27,16 +27,12 @@ export const Tweets = () => {
   const hasNextPage = useAppSelector(selectHasNextPage);
   const whoIsUpdating = useAppSelector(selectWhoIsUpdating);
   const dispatch = useAppDispatch();
-  const isFirstRender = useRef(true);
 
   useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-    dispatch(fetchNextPage())
-      .unwrap()
-      .catch(() => toast.custom(<Message message={errorMessage} />));
+    const controller = new AbortController();
+    dispatch(fetchNextPage(controller.signal));
+
+    return () => controller.abort();
   }, [dispatch]);
 
   const handleFollow = async (user: User) => {

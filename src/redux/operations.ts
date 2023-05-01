@@ -9,9 +9,9 @@ axios.defaults.baseURL = baseURL;
 // ----------------------------------------------------------------
 export const fetchNextPage = createAsyncThunk<
   User[],
-  void,
+  AbortSignal | undefined,
   { state: RootState }
->('users/fetchNextPage', async (_, thunkAPI) => {
+>('users/fetchNextPage', async (signal, thunkAPI) => {
   const page = thunkAPI.getState().users.page;
   const filter = thunkAPI.getState().users.filterByFollow;
   const searchParams = new URLSearchParams({
@@ -22,7 +22,7 @@ export const fetchNextPage = createAsyncThunk<
     searchParams.append('isFollowed', filter === 'Follow' ? 'false' : 'true');
   }
   const url = '/users?' + searchParams.toString();
-  const { data } = await axios.get<User[]>(url);
+  const { data } = await axios.get<User[]>(url, { signal });
   return data;
 });
 

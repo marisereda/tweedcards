@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledMessage = styled.div`
   width: 320px;
-  padding: 0 16px;
+  padding: 16px;
   background-color: ${(p) => p.theme.colors.primary['400']};
   border-radius: ${(p) => p.theme.radii.md};
   box-shadow: ${(p) => p.theme.shadows.lg};

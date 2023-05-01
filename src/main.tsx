@@ -14,12 +14,15 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <HomePage />,
-    errorElement: <HomePage />,
   },
   {
     path: '/tweetcards',
     element: <Tweets />,
     errorElement: <HomePage />,
+  },
+  {
+    path: '*',
+    element: <HomePage />,
   },
 ]);
 
