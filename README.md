@@ -16,6 +16,7 @@
 - Redux Toolkit
 - Styled components
 - Vite
+- Firebase
 
 ## Run locally
 
@@ -31,7 +32,7 @@ Install dependencies
   npm install
 ```
 
-Start the server
+Start the app
 
 ```bash
   npm run dev
