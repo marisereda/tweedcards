@@ -16,7 +16,6 @@
 - Redux Toolkit
 - Styled components
 - Vite
-- Firebase
 
 ## Run locally
 
